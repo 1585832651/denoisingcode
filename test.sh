@@ -1,0 +1,1 @@
+python codes/config/denoising-sde/test_1.py -opt=codes/config/denoising-sde/options/test/refusion.yml
