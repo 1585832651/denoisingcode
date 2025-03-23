@@ -1,5 +1,5 @@
 # Testing Instructions
-
+We used refusion model , https://github.com/Algolzw/image-restoration-sde ,to complete the test.
 To test the model, please follow the steps below:
 
 1.  **Configure the Test Dataset Path:**
@@ -23,3 +23,4 @@ To test the model, please follow the steps below:
     ```
     results/denoising-sde/refusion/NTIRETEST
     ```
+
