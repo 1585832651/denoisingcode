@@ -18,7 +18,6 @@ images
 # 忽略 PyTorch 模型权重文件
 *.pth
 codes/NTIRE2025_Dn50_challenge
-experiments/denoising-sde/refusion
 dataset/LSDIR
 results/denoising-sde
 result
