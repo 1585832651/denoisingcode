@@ -6,3 +6,15 @@ sftp-config.json
 
 # 但不忽略 .py 文件
 !*.py
+
+# 忽略常见的图像格式
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tiff
+*.webp
+
+# 忽略 PyTorch 模型权重文件
+*.pth
