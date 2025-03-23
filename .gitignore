@@ -1,12 +1,11 @@
 .DS_Store
 sftp-config.json
 
-# 忽略所有文件和文件夹
-*
 
+images
 # 但不忽略 .py 文件
 !*.py
-
+log
 # 忽略常见的图像格式
 *.jpg
 *.jpeg
@@ -23,3 +22,4 @@ experiments/denoising-sde/refusion
 dataset/LSDIR
 results/denoising-sde
 result
+dataset/LSDIR
