@@ -71,7 +71,6 @@ datasets/rain/trainH/LQ
 #### for testing dataset ####
 datasets/rain/testH/GT
 datasets/rain/testH/LQ
-
 ```
 
 Then get into the `codes/config/deraining` directory and modify the dataset paths in option files in 

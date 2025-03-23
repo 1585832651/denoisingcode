@@ -65,6 +65,7 @@ for phase, dataset_opt in sorted(opt["datasets"].items()):
 
 # load pretrained model by default
 model = create_model(opt)
+print(model.parameters())
 device = model.device
 lpips_fn = lpips.LPIPS(net='alex').to(device)
 

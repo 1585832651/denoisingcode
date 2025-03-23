@@ -1,29 +1,22 @@
 name: refusion
-suffix: ~  # add suffix to saved images
+suffix:  "testresult"  # add suffix to saved images
 model: denoising
-gpu_ids: [0]
-
+gpu_ids:  [0]
+results_root: testresult
 sde:
   max_sigma: 70
   T: 1000
 
 degradation:
-  sigma: 15
+  sigma: 50
   noise_type: G # Gaussian noise: G
 
 datasets:
   test1:
-    name: McMaster
-    mode: GT
-    dataroot_GT: /home/ziwlu/datasets/testsets/McMaster
-  test2:
-    name: Kodak24
-    mode: GT
-    dataroot_GT: /home/ziwlu/datasets/testsets/Kodak24
-  test3:
-    name: CBSD68
-    mode: GT
-    dataroot_GT: /home/ziwlu/datasets/testsets/CBSD68
+    name: NTIRETEST
+    mode: LQ
+    dataroot_LQ: /root/autodl-tmp/image-restoration-sde/dataset/LSDIR/test
+    dataroot_GT: None
 
 #### network structures
 network_G:
@@ -36,4 +29,5 @@ network_G:
 
 #### path
 path:
-  pretrain_model_G: pretrained/refusion.pth
+  pretrain_model_G: log/refusion/models/700000_G.pth
+  strict_load: true

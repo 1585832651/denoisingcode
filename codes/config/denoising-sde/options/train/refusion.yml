@@ -18,10 +18,9 @@ datasets:
   train:
     name: Train_Dataset
     mode: GT
-    dataroot_GT: /home/ziwlu/datasets/trainHR
-
+    dataroot_GT: dataset/LSDIR/train
     use_shuffle: true
-    n_workers: 4  # per GPU
+    n_workers: 8 # per GPU
     batch_size: 8
     GT_size: 128
     use_flip: true
@@ -30,7 +29,7 @@ datasets:
   val:
     name: Test_Dataset
     mode: GT
-    dataroot_GT: /home/ziwlu/datasets/testsets/McMaster
+    dataroot_GT: /root/autodl-tmp/image-restoration-sde/dataset/LSDIR/val1/val
 
 #### network structures
 network_G:
@@ -45,7 +44,7 @@ network_G:
 path:
   pretrain_model_G: ~
   strict_load: true
-  resume_state: ~
+  resume_state: /root/autodl-tmp/image-restoration-sde/experiments/denoising-sde/refusion/training_state/130000.state
 
 #### training settings: learning rate scheme, loss
 train:

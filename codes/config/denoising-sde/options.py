@@ -6,12 +6,14 @@ import math
 
 import yaml
 
-try:
-    sys.path.append("../../")
-    from utils import OrderedYaml
-except ImportError:
-    pass
-
+# try:
+#     sys.path.append("codes/utils/file_utils.py")
+#     from utils import OrderedYaml
+# except ImportError:
+#     pass
+sys.path.append("/root/autodl-tmp/image-restoration-sde/codes")
+# from utils import OrderedYamls
+from utils.file_utils import OrderedYaml
 Loader, Dumper = OrderedYaml()
 
 

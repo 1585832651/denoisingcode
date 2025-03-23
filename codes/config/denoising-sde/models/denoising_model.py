@@ -173,7 +173,7 @@ class DenoisingModel(BaseModel):
     def get_current_log(self):
         return self.log_dict
 
-    def get_current_visuals(self, need_GT=True):
+    def get_current_visuals(self, need_GT=None):
         out_dict = OrderedDict()
         out_dict["Input"] = self.LQ.detach()[0].float().cpu()
         out_dict["Output"] = self.output.detach()[0].float().cpu()

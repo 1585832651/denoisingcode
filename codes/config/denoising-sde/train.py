@@ -152,7 +152,7 @@ def main():
     # torch.backends.cudnn.deterministic = True
 
     #### create train and val dataloader
-    dataset_ratio = 200  # enlarge the size of each epoch
+    dataset_ratio = 1  # enlarge the size of each epoch
     for phase, dataset_opt in opt["datasets"].items():
         if phase == "train":
             train_set = create_dataset(dataset_opt)
@@ -183,6 +183,7 @@ def main():
         elif phase == "val":
             val_set = create_dataset(dataset_opt)
             val_loader = create_dataloader(val_set, dataset_opt, opt, None)
+            print("loaded:",len(val_loader))
             if rank <= 0:
                 logger.info(
                     "Number of val images in [{:s}]: {:d}".format(
@@ -215,6 +216,7 @@ def main():
 
     sde = util.DenoisingSDE(max_sigma=opt["sde"]["max_sigma"], T=opt["sde"]["T"], schedule=opt["sde"]["schedule"], device=device)
     sde.set_model(model.model)
+    print(sum(p.numel() for p in model.model.parameters()))
 
     degrad_sigma = opt["degradation"]["sigma"]
 
@@ -250,6 +252,7 @@ def main():
                 message = "<epoch:{:3d}, iter:{:8,d}, lr:{:.3e}> ".format(
                     epoch, current_step, model.get_current_learning_rate()
                 )
+                print(message)
                 for k, v in logs.items():
                     message += "{:s}: {:.4e} ".format(k, v)
                     # tensorboard logger
@@ -263,8 +266,8 @@ def main():
             if current_step % opt["train"]["val_freq"] == 0 and rank <= 0:
                 avg_psnr = 0.0
                 idx = 0
-                for _, val_data in enumerate(val_loader):
-
+                for cnt, val_data in enumerate(val_loader):
+                    
                     GT = val_data["GT"]
                     LQ = util.add_noise(GT, degrad_sigma)
 
@@ -279,7 +282,10 @@ def main():
                     # calculate PSNR
                     avg_psnr += util.calculate_psnr(output, gt_img)
                     idx += 1
-
+                    print("finish",cnt)
+                    if cnt == 5 :
+                        break
+                print("realfinishi")
                 avg_psnr = avg_psnr / idx
 
                 if avg_psnr > best_psnr:
